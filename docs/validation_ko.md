@@ -27,3 +27,5 @@ Linux x86-64 GCC 14.2.0 Release `-O3 -DNDEBUG`(LTO 없음)의 `df_substitute`, `
 완전히 새 `build-fresh`에서 Release configure/build, CTest 20/20(설치 소비자·입력 생성 대조·시간 예산/중단 보존 포함), check-differential 25,600 prefix, research-smoke, research-full completed(고정 차분 1,572,864쌍 + 관련 tweak 655,360쌍), bench 8모드 × 5표본을 실행했습니다. 별도 빌드 트리에서 Python 없는 라이브러리 전용, 연구 전용, 벤치 전용 조합을 빌드했고, Python이 필요한 옵션에서 강제로 탐색을 막으면 configure가 실패하는 것을 확인했습니다.
 
 컴파일러 버전은 CMake가 탐색한 ID와 실제 버전을 연구/벤치 manifest에 전달합니다. MSVC에 지원되지 않는 `--version` 명령으로 버전을 추정하지 않습니다. 최신 manifest는 검증 당시의 명세·코어·도구 해시를 포함하며 과거 실행의 도구 해시가 달라질 수 있습니다.
+
+계획 33의 실제 커밋 `d913b4d2565631c778248382ad06a080171ba27a`를 `git archive`로 별도 소스 디렉터리에 추출한 뒤 다시 configure/build, CTest 20/20, check-differential 25,600 prefix, research-smoke 및 research-full completed를 확인했습니다. 마지막 full 실행은 약 9.025초였으며 모든 원시 counts는 기존 결과와 동일합니다.
