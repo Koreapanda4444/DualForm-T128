@@ -28,8 +28,8 @@
 | 22 | test: reproduce public tweak cancellation control | 완료 | 360a167820d3a4c68187e936a3fddccf8d1b5c27 | 1024/1024 positive controls; current schedule observed 0/1024; no statistical gate | 게시 후 원격 확인 |
 | 23 | test: reproduce fixed four-round differential | 완료 | 24ec15dba1c47908056e00b067e43ee6adb5290f | 1572864 pairs / 48 fixed tests completed; independent Python worker count comparison passed | 게시 후 원격 확인 |
 | 24 | test: screen bounded related-tweak differences | 완료 | 03d7d96b79e65f706e30a8d1b33a9e837928bc1a | research-full completed 655360 related pairs / 160 settings; all 128-bit counts cross-checked on independent fixtures | 게시 후 원격 확인 |
-| 25 | docs: record attack models and security limitations | 완료 | 현재 커밋 (Git 이력) | Full result manifest/counts reviewed; 2-round subkey recovery and 4-round statistical distinguisher scoped precisely | 게시 후 원격 확인 |
-| 26 | feat: add separated setup and block benchmarks | 대기 | — | — | — |
+| 25 | docs: record attack models and security limitations | 완료 | 385dfa3ede7658a08731813e94213fe0a91bad9e | Full result manifest/counts reviewed; 2-round subkey recovery and 4-round statistical distinguisher scoped precisely | 게시 후 원격 확인 |
+| 26 | feat: add separated setup and block benchmarks | 완료 | 현재 커밋 (Git 이력) | CTest 15/15; 6 workload modes execute; SHAKE operation counts 0/1/7/7/8/0 verified separately | 게시 후 원격 확인 |
 | 27 | test: validate benchmark timing and workload accounting | 대기 | — | — | — |
 | 28 | feat: add labeled openssl comparison benchmarks | 대기 | — | — | — |
 | 29 | feat: reuse shake contexts within tweak preparation | 대기 | — | — | — |

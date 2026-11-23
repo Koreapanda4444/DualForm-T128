@@ -126,3 +126,22 @@ if(CRYPTO_BUILD_RESEARCH)
       DEPENDS vector_runner research_worker VERBATIM)
   endforeach()
 endif()
+if(CRYPTO_BUILD_BENCHMARKS)
+  add_executable(dualform_bench bench/bench.c)
+  target_include_directories(dualform_bench PRIVATE bench research)
+  target_link_libraries(dualform_bench PRIVATE dualform)
+  if(UNIX)
+    target_compile_definitions(dualform_bench PRIVATE _POSIX_C_SOURCE=200809L)
+  endif()
+  add_custom_target(bench
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/bench/measure.py --exe $<TARGET_FILE:dualform_bench>
+      --compiler ${CMAKE_C_COMPILER} --openssl ${OPENSSL_VERSION} "--flags=${CMAKE_C_FLAGS} ${CMAKE_C_FLAGS_RELEASE}"
+      --output ${CMAKE_CURRENT_BINARY_DIR}/benchmark.json
+    DEPENDS dualform_bench VERBATIM)
+endif()
+if(BUILD_TESTING)
+  df_test(test_bench_accounting)
+  target_include_directories(test_bench_accounting PRIVATE bench)
+  target_compile_definitions(test_bench_accounting PRIVATE DF_TEST_HOOKS)
+  set_property(TARGET test_bench_accounting PROPERTY LINK_LIBRARIES dualform_testing)
+endif()
