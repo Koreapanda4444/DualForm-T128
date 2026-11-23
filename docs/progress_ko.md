@@ -27,8 +27,8 @@
 | 21 | test: reproduce reduced-round subkey recovery | 완료 | c7e603d32b0b8b0b0439de48176b56b80ba65ba6 | research-full: 1024 external P/C subkey recoveries and independent second plaintext checks passed | 게시 후 원격 확인 |
 | 22 | test: reproduce public tweak cancellation control | 완료 | 360a167820d3a4c68187e936a3fddccf8d1b5c27 | 1024/1024 positive controls; current schedule observed 0/1024; no statistical gate | 게시 후 원격 확인 |
 | 23 | test: reproduce fixed four-round differential | 완료 | 24ec15dba1c47908056e00b067e43ee6adb5290f | 1572864 pairs / 48 fixed tests completed; independent Python worker count comparison passed | 게시 후 원격 확인 |
-| 24 | test: screen bounded related-tweak differences | 완료 | 현재 커밋 (Git 이력) | research-full completed 655360 related pairs / 160 settings; all 128-bit counts cross-checked on independent fixtures | 게시 후 원격 확인 |
-| 25 | docs: record attack models and security limitations | 대기 | — | — | — |
+| 24 | test: screen bounded related-tweak differences | 완료 | 03d7d96b79e65f706e30a8d1b33a9e837928bc1a | research-full completed 655360 related pairs / 160 settings; all 128-bit counts cross-checked on independent fixtures | 게시 후 원격 확인 |
+| 25 | docs: record attack models and security limitations | 완료 | 현재 커밋 (Git 이력) | Full result manifest/counts reviewed; 2-round subkey recovery and 4-round statistical distinguisher scoped precisely | 게시 후 원격 확인 |
 | 26 | feat: add separated setup and block benchmarks | 대기 | — | — | — |
 | 27 | test: validate benchmark timing and workload accounting | 대기 | — | — | — |
 | 28 | feat: add labeled openssl comparison benchmarks | 대기 | — | — | — |
