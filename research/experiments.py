@@ -121,3 +121,34 @@ def cancellation(mode,budget):
                 fixture_rule='control-key/tweak/plain/delta; j=0..N-1, r=i=0',
                 limitation='current success count is observed, not an acceptance threshold or proof against related-tweak attacks')
 EXPERIMENTS.append(('public-tweak-cancellation-control',cancellation))
+
+import math
+WORKER=None
+
+def bounds(k,n,tests):
+    if not n:return dict(rate=None,log10_p_upper=None,log10_p_adjusted=None)
+    d=abs(k/n-.5)
+    log=min(0,math.log10(2)-2*n*d*d/math.log(10))
+    return dict(rate=k/n,log10_p_upper=log,log10_p_adjusted=min(0,log+math.log10(tests)))
+
+def worker(mode,j,r,n,v,budget):
+    proc=subprocess.run([WORKER,mode,str(j),str(r),str(n),str(v),str(budget.remaining()),'v1'],capture_output=True,text=True,check=True)
+    row=json.loads(proc.stdout)
+    assert row['requested']==n and 0<=row['executed']<=n
+    assert all(0<=k<=row['executed'] for k in row['counts'])
+    return row
+
+def fixed_bias(mode,budget):
+    configurations=[(0,4,256)] if mode=='smoke' else [(j,r,32768) for j in range(8) for r in (4,5,6,7,8,24)]
+    rows=[]
+    for j,r,n in configurations:
+        if budget():break
+        row=worker('bias',j,r,n,0,budget)
+        row.update(bounds(row['counts'][0],row['executed'],48));rows.append(row)
+        if row['status']!='completed':break
+    executed=sum(x['executed'] for x in rows);requested=sum(x[2] for x in configurations)
+    return dict(status='completed' if executed==requested else 'incomplete',requested=requested,executed=executed,settings=rows,
+                input_delta='L=0000000080000000, R=0',output_bit=1,output_mask='serialized byte0 & 02',
+                multiple_tests=48,fixture_rule='bias-key/tweak(j,0,0); bias-plain(j,r,i)',
+                interpretation='Hoeffding bound under independent Bernoulli approximation; no trail/hull proof or CI p-value gate')
+EXPERIMENTS.append(('fixed-four-round-differential',fixed_bias))

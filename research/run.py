@@ -23,8 +23,10 @@ def main():
     p.add_argument('--openssl',required=True)
     p.add_argument('--flags',default='')
     p.add_argument('--vector-runner',required=True)
+    p.add_argument('--worker',required=True)
     a=p.parse_args()
     experiments.VECTOR_RUNNER=a.vector_runner
+    experiments.WORKER=a.worker
     if a.budget<0:p.error('budget must be nonnegative')
     start=time.monotonic();stop=False
     def interrupt(*_):
@@ -33,6 +35,7 @@ def main():
     signal.signal(signal.SIGINT,interrupt)
     signal.signal(signal.SIGTERM,interrupt)
     def expired(): return stop or time.monotonic()-start>=a.budget
+    expired.remaining=lambda: max(0,a.budget-(time.monotonic()-start))
     doc=dict(schema_version=1,mode=a.mode,status='incomplete',budget_seconds=a.budget,
              manifest=manifest(a.compiler,a.openssl,a.flags),
              sample_rule='SHAKE256(ASCII(DualForm-T128/test/)+ASCII(label)+00+LE64(j)+LE32(r)+LE64(i), n)',

@@ -112,11 +112,17 @@ if(BUILD_TESTING)
   df_test(test_lifetime)
 endif()
 if(CRYPTO_BUILD_RESEARCH)
+  add_executable(research_worker research/worker.c)
+  target_include_directories(research_worker PRIVATE src tests research)
+  target_link_libraries(research_worker PRIVATE dualform)
+  if(UNIX)
+    target_compile_definitions(research_worker PRIVATE _POSIX_C_SOURCE=200809L)
+  endif()
   foreach(mode smoke full)
     add_custom_target(research-${mode}
       COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/research/run.py --mode ${mode}
         --output ${CMAKE_CURRENT_BINARY_DIR}/research-${mode}.json --compiler ${CMAKE_C_COMPILER}
-        --openssl ${OPENSSL_VERSION} --vector-runner $<TARGET_FILE:vector_runner> "--flags=${CMAKE_C_FLAGS} ${CMAKE_C_FLAGS_RELEASE}"
-      DEPENDS vector_runner VERBATIM)
+        --openssl ${OPENSSL_VERSION} --vector-runner $<TARGET_FILE:vector_runner> --worker $<TARGET_FILE:research_worker> "--flags=${CMAKE_C_FLAGS} ${CMAKE_C_FLAGS_RELEASE}"
+      DEPENDS vector_runner research_worker VERBATIM)
   endforeach()
 endif()

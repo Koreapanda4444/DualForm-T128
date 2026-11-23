@@ -25,8 +25,8 @@
 | 19 | feat: add reproducible research runner | 완료 | 014b99ad6ea3981d315d71886f76e1edee41e4a2 | research-smoke completed; budget=0 records incomplete; deterministic input and schema checks | 게시 후 원격 확인 |
 | 20 | test: verify round function inversion | 완료 | d79ad56394d6a6c1b11391fc1db286be2687d6f3 | research smoke and 10007 boundary/random words; rank64 and both F inverses passed | 게시 후 원격 확인 |
 | 21 | test: reproduce reduced-round subkey recovery | 완료 | c7e603d32b0b8b0b0439de48176b56b80ba65ba6 | research-full: 1024 external P/C subkey recoveries and independent second plaintext checks passed | 게시 후 원격 확인 |
-| 22 | test: reproduce public tweak cancellation control | 완료 | 현재 커밋 (Git 이력) | 1024/1024 positive controls; current schedule observed 0/1024; no statistical gate | 게시 후 원격 확인 |
-| 23 | test: reproduce fixed four-round differential | 대기 | — | — | — |
+| 22 | test: reproduce public tweak cancellation control | 완료 | 360a167820d3a4c68187e936a3fddccf8d1b5c27 | 1024/1024 positive controls; current schedule observed 0/1024; no statistical gate | 게시 후 원격 확인 |
+| 23 | test: reproduce fixed four-round differential | 완료 | 현재 커밋 (Git 이력) | 1572864 pairs / 48 fixed tests completed; independent Python worker count comparison passed | 게시 후 원격 확인 |
 | 24 | test: screen bounded related-tweak differences | 대기 | — | — | — |
 | 25 | docs: record attack models and security limitations | 대기 | — | — | — |
 | 26 | feat: add separated setup and block benchmarks | 대기 | — | — | — |
