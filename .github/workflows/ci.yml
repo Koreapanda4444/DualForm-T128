@@ -1,0 +1,45 @@
+name: CI
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  portable:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {os: ubuntu-latest, cc: gcc}
+          - {os: ubuntu-latest, cc: clang}
+          - {os: macos-latest, cc: clang}
+          - {os: windows-latest, cc: cl}
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Configure Unix
+        if: runner.os != 'Windows'
+        shell: bash
+        env:
+          CC: ${{ matrix.cc }}
+        run: |
+          args=()
+          if [ "$RUNNER_OS" = macOS ]; then args+=("-DOPENSSL_ROOT_DIR=$(brew --prefix openssl@3)"); fi
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=ON "${args[@]}"
+      - name: Configure MSVC
+        if: runner.os == 'Windows'
+        run: cmake -S . -B build -A x64 -DBUILD_TESTING=ON
+      - run: cmake --build build --config Release --parallel 4
+      - run: ctest --test-dir build -C Release --output-on-failure
+      - run: cmake --build build --config Release --target check-differential
+  sanitize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug -DBUILD_TESTING=ON -DCRYPTO_ENABLE_SANITIZERS=ON
+      - run: cmake --build build --parallel 4
+      - run: ctest --test-dir build --output-on-failure
