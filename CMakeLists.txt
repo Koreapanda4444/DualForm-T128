@@ -145,3 +145,12 @@ if(BUILD_TESTING)
   target_compile_definitions(test_bench_accounting PRIVATE DF_TEST_HOOKS)
   set_property(TARGET test_bench_accounting PROPERTY LINK_LIBRARIES dualform_testing)
 endif()
+if(BUILD_TESTING)
+  add_test(NAME benchmark_schema COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_bench_schema.py)
+endif()
+if(BUILD_TESTING AND CRYPTO_BUILD_RESEARCH)
+  add_test(NAME research_worker_oracle COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/research/check_worker.py $<TARGET_FILE:research_worker>)
+  add_test(NAME research_smoke COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/research/run.py --mode smoke
+    --output ${CMAKE_CURRENT_BINARY_DIR}/research-ctest.json --compiler ${CMAKE_C_COMPILER} --openssl ${OPENSSL_VERSION}
+    --vector-runner $<TARGET_FILE:vector_runner> --worker $<TARGET_FILE:research_worker>)
+endif()
