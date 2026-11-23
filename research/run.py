@@ -4,6 +4,7 @@ import signal
 import time
 from pathlib import Path
 from common import manifest,write_json
+import experiments
 from experiments import EXPERIMENTS
 
 def validate(doc):
@@ -21,7 +22,9 @@ def main():
     p.add_argument('--compiler',required=True)
     p.add_argument('--openssl',required=True)
     p.add_argument('--flags',default='')
+    p.add_argument('--vector-runner',required=True)
     a=p.parse_args()
+    experiments.VECTOR_RUNNER=a.vector_runner
     if a.budget<0:p.error('budget must be nonnegative')
     start=time.monotonic();stop=False
     def interrupt(*_):

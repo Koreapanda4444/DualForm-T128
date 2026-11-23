@@ -80,7 +80,7 @@ endif()
 if(BUILD_TESTING)
   df_test(test_encrypt)
 endif()
-if(BUILD_TESTING)
+if(BUILD_TESTING OR CRYPTO_BUILD_RESEARCH)
   add_executable(vector_runner tests/vector_runner.c)
   target_include_directories(vector_runner PRIVATE src tests)
   target_link_libraries(vector_runner PRIVATE dualform)
@@ -116,7 +116,7 @@ if(CRYPTO_BUILD_RESEARCH)
     add_custom_target(research-${mode}
       COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/research/run.py --mode ${mode}
         --output ${CMAKE_CURRENT_BINARY_DIR}/research-${mode}.json --compiler ${CMAKE_C_COMPILER}
-        --openssl ${OPENSSL_VERSION} "--flags=${CMAKE_C_FLAGS} ${CMAKE_C_FLAGS_RELEASE}"
-      VERBATIM)
+        --openssl ${OPENSSL_VERSION} --vector-runner $<TARGET_FILE:vector_runner> "--flags=${CMAKE_C_FLAGS} ${CMAKE_C_FLAGS_RELEASE}"
+      DEPENDS vector_runner VERBATIM)
   endforeach()
 endif()

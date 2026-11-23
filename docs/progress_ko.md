@@ -23,8 +23,8 @@
 | 17 | test: add sanitizer regression checks | 완료 | 80b31c32623e0bcb42490c43d8449119cb4df24c | Release 14/14; ASan+UBSan Debug 14/14 with local LSan unavailable under ptrace | 완료 / workflow 도입 전 |
 | 18 | test: verify portable compiler and platform builds | 완료 | b85abaf35bdd531f08c37f7de890513b642ca52f | Workflow YAML parse; local GCC Release and ASan/UBSan passed; remote matrix pending | 게시 후 원격 확인 |
 | 19 | feat: add reproducible research runner | 완료 | 014b99ad6ea3981d315d71886f76e1edee41e4a2 | research-smoke completed; budget=0 records incomplete; deterministic input and schema checks | 게시 후 원격 확인 |
-| 20 | test: verify round function inversion | 완료 | 현재 커밋 (Git 이력) | research smoke and 10007 boundary/random words; rank64 and both F inverses passed | 게시 후 원격 확인 |
-| 21 | test: reproduce reduced-round subkey recovery | 대기 | — | — | — |
+| 20 | test: verify round function inversion | 완료 | d79ad56394d6a6c1b11391fc1db286be2687d6f3 | research smoke and 10007 boundary/random words; rank64 and both F inverses passed | 게시 후 원격 확인 |
+| 21 | test: reproduce reduced-round subkey recovery | 완료 | 현재 커밋 (Git 이력) | research-full: 1024 external P/C subkey recoveries and independent second plaintext checks passed | 게시 후 원격 확인 |
 | 22 | test: reproduce public tweak cancellation control | 대기 | — | — | — |
 | 23 | test: reproduce fixed four-round differential | 대기 | — | — | — |
 | 24 | test: screen bounded related-tweak differences | 대기 | — | — | — |

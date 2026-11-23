@@ -55,3 +55,42 @@ def inversion(mode,budget):
         count+=1
     return dict(status='completed' if count==len(words) else 'incomplete',rank=64,basis=64,requested=len(words),executed=count,rounds=[0,1],directions='both',failures=0)
 EXPERIMENTS.append(('round-inversion',inversion))
+
+import json
+import subprocess
+import struct
+from reference import schedule,encrypt,shake
+VECTOR_RUNNER=None
+
+def c_cases(cases):
+    payload=''.join(f'{k.hex()} {t.hex()} {p.hex()}\n' for k,t,p in cases)
+    result=subprocess.run([VECTOR_RUNNER],input=payload,text=True,capture_output=True,check=True)
+    rows=[json.loads(x) for x in result.stdout.splitlines()]
+    assert len(rows)==len(cases)
+    return rows
+
+def recover_two_rounds(plain,cipher):
+    """Attack receives only the external plaintext and two-round ciphertext."""
+    l,r=struct.unpack('<QQ',plain);cl,cr=struct.unpack('<QQ',cipher)
+    return r^inverse_even(cl^l),cl^inverse_odd(cr^r)
+
+def subkey_recovery(mode,budget):
+    n=16 if mode=='smoke' else 1024
+    executed=0
+    for offset in range(0,n,16):
+        if budget():break
+        cases=[]
+        for j in range(offset,min(offset+16,n)):
+            k=sample('kat-key',j,0,0,32);t=sample('kat-tweak',j,0,0,16)
+            cases.extend([(k,t,sample('kat-plain',j,0,0,16)),(k,t,sample('recovery-verify',j,0,0,16))])
+        rows=c_cases(cases)
+        for j in range(0,len(cases),2):
+            p=cases[j][2];ct=bytes.fromhex(rows[j]['trace'][2])
+            recovered=recover_two_rounds(p,ct)
+            assert recovered==tuple(int(x,16) for x in rows[j]['sk'][:2])
+            assert encrypt(recovered,cases[j+1][2],2).hex()==rows[j+1]['trace'][2]
+            executed+=1
+    return dict(status='completed' if executed==n else 'incomplete',requested=n,executed=executed,rounds=2,
+                recovered='SK0 and SK1 only; not the master key or 24-round schedule',verified_second_plaintexts=executed,failures=0,
+                fixture_rule='kat-key/kat-tweak/kat-plain and recovery-verify; j=0..N-1, r=i=0')
+EXPERIMENTS.append(('two-round-subkey-recovery',subkey_recovery))
