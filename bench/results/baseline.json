@@ -1,0 +1,754 @@
+{
+  "manifest": {
+    "core_sha256": "cc9004a4733fd01b5c87e67f6df04a97f841746f8c5e7fdfafdd9a3aeb42799a",
+    "source_sha256": {
+      "include/dualform.h": "7199df6315876ae096a65c9ef19de22286cc05aff83168225ade19b6ca4a37be",
+      "src/df_memory.h": "040d1efc173a2e7fb10e828ea907dd557431442f42a395e07ef3c3b1adc0b552",
+      "src/dualform.c": "0c27f22c0e736a3ae7732f1ba6ddca730ed483561f4559c9ea27fecb3f8ce4b8",
+      "src/dualform_core.c": "1e8127741baa3f4d2e0e614d2772d563244a7ed121d33ee5616bcdae3d121fc0",
+      "src/dualform_internal.h": "12e156839e5974c21f35779e7559120b4bfc9eecf50fed47bd525021f1727448",
+      "src/shake256.c": "aa091fa81675a14cf21268cd8d1074dfbe7b04d41bd6f2b606f69a6996faa1c4",
+      "src/shake256.h": "e94c211a5400f6d25973ba81a677e0528e2249313c50360ffd888bce821d9503"
+    },
+    "spec_sha256": "840b0fbb9f1052a9f3dff61ef909352bc356359fcf41dbe9919647b97ebc1c8a",
+    "tools_sha256": "101857ed12beb4731bf270b44cd1fd6314e846ce7995253a3e1d62b1a9d556f6",
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "os": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "cpu": "AMD EPYC 9V45 96-Core Processor",
+    "compiler": "cc (Debian 14.2.0-19) 14.2.0",
+    "compiler_path": "/usr/bin/cc",
+    "openssl": "3.5.7",
+    "flags": " -O3 -DNDEBUG"
+  },
+  "status": "completed",
+  "modes": {
+    "prepared_encrypt": {
+      "samples": [
+        {
+          "mode": "prepared_encrypt",
+          "iterations": 2176205,
+          "seconds": 0.278901664,
+          "ns_per_op": 128.159647,
+          "ops_per_second": 7802768.075276,
+          "checksum": 126227314,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026",
+          "mib_per_second": 119.060792
+        },
+        {
+          "mode": "prepared_encrypt",
+          "iterations": 2176205,
+          "seconds": 0.28238127,
+          "ns_per_op": 129.75858,
+          "ops_per_second": 7706619.493564,
+          "checksum": 126227314,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026",
+          "mib_per_second": 117.593681
+        },
+        {
+          "mode": "prepared_encrypt",
+          "iterations": 2176205,
+          "seconds": 0.263936288,
+          "ns_per_op": 121.282824,
+          "ops_per_second": 8245190.596907,
+          "checksum": 126227314,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026",
+          "mib_per_second": 125.811624
+        },
+        {
+          "mode": "prepared_encrypt",
+          "iterations": 2176205,
+          "seconds": 0.281367154,
+          "ns_per_op": 129.292578,
+          "ops_per_second": 7734396.034016,
+          "checksum": 126227314,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026",
+          "mib_per_second": 118.017518
+        },
+        {
+          "mode": "prepared_encrypt",
+          "iterations": 2176205,
+          "seconds": 0.259782584,
+          "ns_per_op": 119.374132,
+          "ops_per_second": 8377024.227304,
+          "checksum": 126227314,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026",
+          "mib_per_second": 127.823246
+        }
+      ],
+      "calibration": [
+        {
+          "mode": "prepared_encrypt",
+          "iterations": 1024,
+          "seconds": 0.000117636,
+          "ns_per_op": 114.878906,
+          "ops_per_second": 8704818.259313,
+          "checksum": 66816,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026",
+          "mib_per_second": 132.824986
+        },
+        {
+          "mode": "prepared_encrypt",
+          "iterations": 2176205,
+          "seconds": 0.254167333,
+          "ns_per_op": 116.793837,
+          "ops_per_second": 8562095.586062,
+          "checksum": 126227314,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026",
+          "mib_per_second": 130.64721
+        }
+      ],
+      "median_ns": 128.159647,
+      "min_ns": 119.374132,
+      "max_ns": 129.75858,
+      "ops_per_second": 7802768.058498163,
+      "mib_per_second": 119.06079190823613
+    },
+    "key_setup": {
+      "samples": [
+        {
+          "mode": "key_setup",
+          "iterations": 287929,
+          "seconds": 0.275728027,
+          "ns_per_op": 957.625064,
+          "ops_per_second": 1044250.028308,
+          "checksum": 94242337766816,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026"
+        },
+        {
+          "mode": "key_setup",
+          "iterations": 287929,
+          "seconds": 0.259180202,
+          "ns_per_op": 900.15317,
+          "ops_per_second": 1110922.044887,
+          "checksum": 94379603586464,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026"
+        },
+        {
+          "mode": "key_setup",
+          "iterations": 287929,
+          "seconds": 0.262117447,
+          "ns_per_op": 910.354452,
+          "ops_per_second": 1098473.235168,
+          "checksum": 93953540332960,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026"
+        },
+        {
+          "mode": "key_setup",
+          "iterations": 287929,
+          "seconds": 0.239985357,
+          "ns_per_op": 833.487968,
+          "ops_per_second": 1199777.368083,
+          "checksum": 94145079909792,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026"
+        },
+        {
+          "mode": "key_setup",
+          "iterations": 287929,
+          "seconds": 0.241249449,
+          "ns_per_op": 837.878258,
+          "ops_per_second": 1193490.808761,
+          "checksum": 93928137072032,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026"
+        }
+      ],
+      "calibration": [
+        {
+          "mode": "key_setup",
+          "iterations": 1024,
+          "seconds": 0.00088911,
+          "ns_per_op": 868.271484,
+          "ops_per_second": 1151713.511113,
+          "checksum": 0,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026"
+        },
+        {
+          "mode": "key_setup",
+          "iterations": 287929,
+          "seconds": 0.264739619,
+          "ns_per_op": 919.461461,
+          "ops_per_second": 1087593.164512,
+          "checksum": 94730723290528,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026"
+        }
+      ],
+      "median_ns": 900.15317,
+      "min_ns": 833.487968,
+      "max_ns": 957.625064,
+      "ops_per_second": 1110922.0445227115
+    },
+    "tweak_setup": {
+      "samples": [
+        {
+          "mode": "tweak_setup",
+          "iterations": 61871,
+          "seconds": 0.241836216,
+          "ns_per_op": 3908.716782,
+          "ops_per_second": 255838.43902,
+          "checksum": 94803043499424,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026"
+        },
+        {
+          "mode": "tweak_setup",
+          "iterations": 61871,
+          "seconds": 0.261571109,
+          "ns_per_op": 4227.685168,
+          "ops_per_second": 236536.061787,
+          "checksum": 94896882310560,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026"
+        },
+        {
+          "mode": "tweak_setup",
+          "iterations": 61871,
+          "seconds": 0.254129957,
+          "ns_per_op": 4107.41635,
+          "ops_per_second": 243462.048829,
+          "checksum": 94767675018656,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026"
+        },
+        {
+          "mode": "tweak_setup",
+          "iterations": 61871,
+          "seconds": 0.275175852,
+          "ns_per_op": 4447.574017,
+          "ops_per_second": 224841.676878,
+          "checksum": 93843075268000,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026"
+        },
+        {
+          "mode": "tweak_setup",
+          "iterations": 61871,
+          "seconds": 0.248874235,
+          "ns_per_op": 4022.469897,
+          "ops_per_second": 248603.47637,
+          "checksum": 94347778727328,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026"
+        }
+      ],
+      "calibration": [
+        {
+          "mode": "tweak_setup",
+          "iterations": 1024,
+          "seconds": 0.005268391,
+          "ns_per_op": 5144.913086,
+          "ops_per_second": 194366.743097,
+          "checksum": 0,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026"
+        },
+        {
+          "mode": "tweak_setup",
+          "iterations": 48592,
+          "seconds": 0.196346146,
+          "ns_per_op": 4040.709294,
+          "ops_per_second": 247481.30274,
+          "checksum": 0,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026"
+        },
+        {
+          "mode": "tweak_setup",
+          "iterations": 61871,
+          "seconds": 0.269556875,
+          "ns_per_op": 4356.756396,
+          "ops_per_second": 229528.554966,
+          "checksum": 94891310812576,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026"
+        }
+      ],
+      "median_ns": 4107.41635,
+      "min_ns": 3908.716782,
+      "max_ns": 4447.574017,
+      "ops_per_second": 243462.04883758616
+    },
+    "tweak_and_block": {
+      "samples": [
+        {
+          "mode": "tweak_and_block",
+          "iterations": 56981,
+          "seconds": 0.251825,
+          "ns_per_op": 4419.455608,
+          "ops_per_second": 226272.212846,
+          "checksum": 7297820,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026",
+          "mib_per_second": 3.45264
+        },
+        {
+          "mode": "tweak_and_block",
+          "iterations": 56981,
+          "seconds": 0.241019374,
+          "ns_per_op": 4229.82001,
+          "ops_per_second": 236416.679101,
+          "checksum": 7297820,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026",
+          "mib_per_second": 3.607432
+        },
+        {
+          "mode": "tweak_and_block",
+          "iterations": 56981,
+          "seconds": 0.253946904,
+          "ns_per_op": 4456.694407,
+          "ops_per_second": 224381.550247,
+          "checksum": 7297820,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026",
+          "mib_per_second": 3.423791
+        },
+        {
+          "mode": "tweak_and_block",
+          "iterations": 56981,
+          "seconds": 0.241498001,
+          "ns_per_op": 4238.219775,
+          "ops_per_second": 235948.122817,
+          "checksum": 7297820,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026",
+          "mib_per_second": 3.600283
+        },
+        {
+          "mode": "tweak_and_block",
+          "iterations": 56981,
+          "seconds": 0.254391399,
+          "ns_per_op": 4464.495165,
+          "ops_per_second": 223989.491091,
+          "checksum": 7297820,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026",
+          "mib_per_second": 3.417808
+        }
+      ],
+      "calibration": [
+        {
+          "mode": "tweak_and_block",
+          "iterations": 1024,
+          "seconds": 0.004492771,
+          "ns_per_op": 4387.47168,
+          "ops_per_second": 227921.6991,
+          "checksum": 147178,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026",
+          "mib_per_second": 3.477809
+        },
+        {
+          "mode": "tweak_and_block",
+          "iterations": 56981,
+          "seconds": 0.243000909,
+          "ns_per_op": 4264.595374,
+          "ops_per_second": 234488.834772,
+          "checksum": 7297820,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026",
+          "mib_per_second": 3.578016
+        }
+      ],
+      "median_ns": 4419.455608,
+      "min_ns": 4229.82001,
+      "max_ns": 4464.495165,
+      "ops_per_second": 226272.21284671855,
+      "mib_per_second": 3.452639966533181
+    },
+    "key_tweak_and_block": {
+      "samples": [
+        {
+          "mode": "key_tweak_and_block",
+          "iterations": 48898,
+          "seconds": 0.253438435,
+          "ns_per_op": 5183.002066,
+          "ops_per_second": 192938.375744,
+          "checksum": 6253470,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026",
+          "mib_per_second": 2.944006
+        },
+        {
+          "mode": "key_tweak_and_block",
+          "iterations": 48898,
+          "seconds": 0.265509998,
+          "ns_per_op": 5429.874392,
+          "ops_per_second": 184166.322806,
+          "checksum": 6253470,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026",
+          "mib_per_second": 2.810155
+        },
+        {
+          "mode": "key_tweak_and_block",
+          "iterations": 48898,
+          "seconds": 0.240516913,
+          "ns_per_op": 4918.747454,
+          "ops_per_second": 203303.790116,
+          "checksum": 6253470,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026",
+          "mib_per_second": 3.10217
+        },
+        {
+          "mode": "key_tweak_and_block",
+          "iterations": 48898,
+          "seconds": 0.269038137,
+          "ns_per_op": 5502.027424,
+          "ops_per_second": 181751.18422,
+          "checksum": 6253470,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026",
+          "mib_per_second": 2.773303
+        },
+        {
+          "mode": "key_tweak_and_block",
+          "iterations": 48898,
+          "seconds": 0.246195131,
+          "ns_per_op": 5034.871181,
+          "ops_per_second": 198614.813385,
+          "checksum": 6253470,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026",
+          "mib_per_second": 3.030622
+        }
+      ],
+      "calibration": [
+        {
+          "mode": "key_tweak_and_block",
+          "iterations": 1024,
+          "seconds": 0.009657207,
+          "ns_per_op": 9430.866211,
+          "ops_per_second": 106034.798675,
+          "checksum": 149903,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026",
+          "mib_per_second": 1.617963
+        },
+        {
+          "mode": "key_tweak_and_block",
+          "iterations": 26509,
+          "seconds": 0.13553247,
+          "ns_per_op": 5112.696443,
+          "ops_per_second": 195591.506596,
+          "checksum": 3399030,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026",
+          "mib_per_second": 2.98449
+        },
+        {
+          "mode": "key_tweak_and_block",
+          "iterations": 48898,
+          "seconds": 0.26560469,
+          "ns_per_op": 5431.810913,
+          "ops_per_second": 184100.664789,
+          "checksum": 6253470,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026",
+          "mib_per_second": 2.809153
+        }
+      ],
+      "median_ns": 5183.002066,
+      "min_ns": 4918.747454,
+      "max_ns": 5502.027424,
+      "ops_per_second": 192938.37572628126,
+      "mib_per_second": 2.944005977268696
+    },
+    "prepared_decrypt": {
+      "samples": [
+        {
+          "mode": "prepared_decrypt",
+          "iterations": 2227598,
+          "seconds": 0.264409186,
+          "ns_per_op": 118.696994,
+          "ops_per_second": 8424813.198428,
+          "checksum": 0,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026",
+          "mib_per_second": 128.552447
+        },
+        {
+          "mode": "prepared_decrypt",
+          "iterations": 2227598,
+          "seconds": 0.278337998,
+          "ns_per_op": 124.949833,
+          "ops_per_second": 8003211.979706,
+          "checksum": 0,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026",
+          "mib_per_second": 122.119323
+        },
+        {
+          "mode": "prepared_decrypt",
+          "iterations": 2227598,
+          "seconds": 0.260615859,
+          "ns_per_op": 116.994116,
+          "ops_per_second": 8547438.396681,
+          "checksum": 0,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026",
+          "mib_per_second": 130.42356
+        },
+        {
+          "mode": "prepared_decrypt",
+          "iterations": 2227598,
+          "seconds": 0.279427699,
+          "ns_per_op": 125.439015,
+          "ops_per_second": 7972001.372704,
+          "checksum": 0,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026",
+          "mib_per_second": 121.643087
+        },
+        {
+          "mode": "prepared_decrypt",
+          "iterations": 2227598,
+          "seconds": 0.262657935,
+          "ns_per_op": 117.910833,
+          "ops_per_second": 8480984.973864,
+          "checksum": 0,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026",
+          "mib_per_second": 129.409561
+        }
+      ],
+      "calibration": [
+        {
+          "mode": "prepared_decrypt",
+          "iterations": 1024,
+          "seconds": 0.000114922,
+          "ns_per_op": 112.228516,
+          "ops_per_second": 8910391.398532,
+          "checksum": 0,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026",
+          "mib_per_second": 135.961783
+        },
+        {
+          "mode": "prepared_decrypt",
+          "iterations": 2227598,
+          "seconds": 0.289825418,
+          "ns_per_op": 130.106697,
+          "ops_per_second": 7685999.438463,
+          "checksum": 0,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026",
+          "mib_per_second": 117.279044
+        }
+      ],
+      "median_ns": 118.696994,
+      "min_ns": 116.994116,
+      "max_ns": 125.439015,
+      "ops_per_second": 8424813.184401283,
+      "mib_per_second": 128.5524472717481
+    },
+    "aes256_prepared": {
+      "samples": [
+        {
+          "mode": "aes256_prepared",
+          "iterations": 19831126,
+          "seconds": 0.251731034,
+          "ns_per_op": 12.693734,
+          "ops_per_second": 78779027.301042,
+          "mib_per_second": 1202.07256,
+          "checksum": 4362875880,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026",
+          "boundary": "reused AES-256 ECB context; one 16-byte EVP Update; no tweak or authentication"
+        },
+        {
+          "mode": "aes256_prepared",
+          "iterations": 19831126,
+          "seconds": 0.27320052,
+          "ns_per_op": 13.776349,
+          "ops_per_second": 72588170.769269,
+          "mib_per_second": 1107.607586,
+          "checksum": 4362875880,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026",
+          "boundary": "reused AES-256 ECB context; one 16-byte EVP Update; no tweak or authentication"
+        },
+        {
+          "mode": "aes256_prepared",
+          "iterations": 19831126,
+          "seconds": 0.253795334,
+          "ns_per_op": 12.797828,
+          "ops_per_second": 78138260.808227,
+          "mib_per_second": 1192.295239,
+          "checksum": 4362875880,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026",
+          "boundary": "reused AES-256 ECB context; one 16-byte EVP Update; no tweak or authentication"
+        },
+        {
+          "mode": "aes256_prepared",
+          "iterations": 19831126,
+          "seconds": 0.253681242,
+          "ns_per_op": 12.792075,
+          "ops_per_second": 78173403.140352,
+          "mib_per_second": 1192.831469,
+          "checksum": 4362875880,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026",
+          "boundary": "reused AES-256 ECB context; one 16-byte EVP Update; no tweak or authentication"
+        },
+        {
+          "mode": "aes256_prepared",
+          "iterations": 19831126,
+          "seconds": 0.250482085,
+          "ns_per_op": 12.630755,
+          "ops_per_second": 79171833.786059,
+          "mib_per_second": 1208.066311,
+          "checksum": 4362875880,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026",
+          "boundary": "reused AES-256 ECB context; one 16-byte EVP Update; no tweak or authentication"
+        }
+      ],
+      "calibration": [
+        {
+          "mode": "aes256_prepared",
+          "iterations": 1024,
+          "seconds": 1.2909e-05,
+          "ns_per_op": 12.606445,
+          "ops_per_second": 79324502.860648,
+          "mib_per_second": 1210.395857,
+          "checksum": 253440,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026",
+          "boundary": "reused AES-256 ECB context; one 16-byte EVP Update; no tweak or authentication"
+        },
+        {
+          "mode": "aes256_prepared",
+          "iterations": 19831126,
+          "seconds": 0.254786802,
+          "ns_per_op": 12.847823,
+          "ops_per_second": 77834196.451001,
+          "mib_per_second": 1187.655585,
+          "checksum": 4362875880,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026",
+          "boundary": "reused AES-256 ECB context; one 16-byte EVP Update; no tweak or authentication"
+        }
+      ],
+      "median_ns": 12.792075,
+      "min_ns": 12.630755,
+      "max_ns": 13.776349,
+      "ops_per_second": 78173400.32793741,
+      "mib_per_second": 1192.8314259023653
+    },
+    "aes256_key_block": {
+      "samples": [
+        {
+          "mode": "aes256_key_block",
+          "iterations": 729857,
+          "seconds": 0.260337042,
+          "ns_per_op": 356.695958,
+          "ops_per_second": 2803508.077042,
+          "mib_per_second": 42.778138,
+          "checksum": 93109380,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026",
+          "boundary": "EVP context create, AES-256 init, no padding, one Update, Final, context free"
+        },
+        {
+          "mode": "aes256_key_block",
+          "iterations": 729857,
+          "seconds": 0.282951767,
+          "ns_per_op": 387.681103,
+          "ops_per_second": 2579439.625836,
+          "mib_per_second": 39.359125,
+          "checksum": 93109380,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026",
+          "boundary": "EVP context create, AES-256 init, no padding, one Update, Final, context free"
+        },
+        {
+          "mode": "aes256_key_block",
+          "iterations": 729857,
+          "seconds": 0.269286814,
+          "ns_per_op": 368.958322,
+          "ops_per_second": 2710333.22857,
+          "mib_per_second": 41.356403,
+          "checksum": 93109380,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026",
+          "boundary": "EVP context create, AES-256 init, no padding, one Update, Final, context free"
+        },
+        {
+          "mode": "aes256_key_block",
+          "iterations": 729857,
+          "seconds": 0.292863724,
+          "ns_per_op": 401.261787,
+          "ops_per_second": 2492138.630321,
+          "mib_per_second": 38.027018,
+          "checksum": 93109380,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026",
+          "boundary": "EVP context create, AES-256 init, no padding, one Update, Final, context free"
+        },
+        {
+          "mode": "aes256_key_block",
+          "iterations": 729857,
+          "seconds": 0.258630378,
+          "ns_per_op": 354.357604,
+          "ops_per_second": 2822008.016399,
+          "mib_per_second": 43.060425,
+          "checksum": 93109380,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026",
+          "boundary": "EVP context create, AES-256 init, no padding, one Update, Final, context free"
+        }
+      ],
+      "calibration": [
+        {
+          "mode": "aes256_key_block",
+          "iterations": 1024,
+          "seconds": 0.000350754,
+          "ns_per_op": 342.533203,
+          "ops_per_second": 2919425.010037,
+          "mib_per_second": 44.54689,
+          "checksum": 144447,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026",
+          "boundary": "EVP context create, AES-256 init, no padding, one Update, Final, context free"
+        },
+        {
+          "mode": "aes256_key_block",
+          "iterations": 729857,
+          "seconds": 0.258459557,
+          "ns_per_op": 354.123557,
+          "ops_per_second": 2823873.13695,
+          "mib_per_second": 43.088885,
+          "checksum": 93109380,
+          "clock": "clock_gettime(CLOCK_MONOTONIC)",
+          "openssl_runtime": "OpenSSL 3.5.7 9 Jun 2026",
+          "boundary": "EVP context create, AES-256 init, no padding, one Update, Final, context free"
+        }
+      ],
+      "median_ns": 368.958322,
+      "min_ns": 354.357604,
+      "max_ns": 401.261787,
+      "ops_per_second": 2710333.2283693547,
+      "mib_per_second": 41.356403020772625
+    }
+  },
+  "measurement_tools_sha256": "9c1c84741ec663653941acf03aae7b4db97c1c89e6275688749e2b2c372f3a14",
+  "contract": "C internal loops; input generation outside clock; API allocation and cleansing included; 128 untimed warmup operations per invocation; at least 5 measured samples >= 200ms",
+  "hardware_acceleration": "OpenSSL automatic runtime dispatch, selected machine-code path unverified",
+  "cpu_affinity": "not pinned",
+  "openssl_comparison": "AES-256 ECB single-block reference only; no tweak; prepared Update versus fresh context+Init+Update+Final+free; different primitive and semantics"
+}
