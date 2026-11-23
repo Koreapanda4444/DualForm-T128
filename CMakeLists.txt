@@ -121,7 +121,7 @@ if(CRYPTO_BUILD_RESEARCH)
   foreach(mode smoke full)
     add_custom_target(research-${mode}
       COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/research/run.py --mode ${mode}
-        --output ${CMAKE_CURRENT_BINARY_DIR}/research-${mode}.json --compiler ${CMAKE_C_COMPILER}
+        --output ${CMAKE_CURRENT_BINARY_DIR}/research-${mode}.json --compiler ${CMAKE_C_COMPILER} --compiler-version "${CMAKE_C_COMPILER_ID} ${CMAKE_C_COMPILER_VERSION}"
         --openssl ${OPENSSL_VERSION} --vector-runner $<TARGET_FILE:vector_runner> --worker $<TARGET_FILE:research_worker> "--flags=${CMAKE_C_FLAGS} ${CMAKE_C_FLAGS_RELEASE}"
       DEPENDS vector_runner research_worker VERBATIM)
   endforeach()
@@ -135,7 +135,7 @@ if(CRYPTO_BUILD_BENCHMARKS)
   endif()
   add_custom_target(bench
     COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/bench/measure.py --exe $<TARGET_FILE:dualform_bench>
-      --compiler ${CMAKE_C_COMPILER} --openssl ${OPENSSL_VERSION} "--flags=${CMAKE_C_FLAGS} ${CMAKE_C_FLAGS_RELEASE}"
+      --compiler ${CMAKE_C_COMPILER} --compiler-version "${CMAKE_C_COMPILER_ID} ${CMAKE_C_COMPILER_VERSION}" --openssl ${OPENSSL_VERSION} "--flags=${CMAKE_C_FLAGS} ${CMAKE_C_FLAGS_RELEASE}"
       --output ${CMAKE_CURRENT_BINARY_DIR}/benchmark.json
     DEPENDS dualform_bench VERBATIM)
 endif()
@@ -151,7 +151,7 @@ endif()
 if(BUILD_TESTING AND CRYPTO_BUILD_RESEARCH)
   add_test(NAME research_worker_oracle COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/research/check_worker.py $<TARGET_FILE:research_worker>)
   add_test(NAME research_smoke COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/research/run.py --mode smoke
-    --output ${CMAKE_CURRENT_BINARY_DIR}/research-ctest.json --compiler ${CMAKE_C_COMPILER} --openssl ${OPENSSL_VERSION}
+    --output ${CMAKE_CURRENT_BINARY_DIR}/research-ctest.json --compiler ${CMAKE_C_COMPILER} --compiler-version "${CMAKE_C_COMPILER_ID} ${CMAKE_C_COMPILER_VERSION}" --openssl ${OPENSSL_VERSION}
     --vector-runner $<TARGET_FILE:vector_runner> --worker $<TARGET_FILE:research_worker>)
 endif()
 include(GNUInstallDirs)
@@ -166,4 +166,14 @@ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/DualFormConfig.cmake ${CMAKE_CURRENT_B
 if(BUILD_TESTING AND NOT CRYPTO_ENABLE_SANITIZERS)
   add_test(NAME installed_consumer COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/check_install.py
     --build ${CMAKE_CURRENT_BINARY_DIR} --config $<CONFIG> --cmake ${CMAKE_COMMAND} --ctest ${CMAKE_CTEST_COMMAND} --openssl-root ${OPENSSL_INCLUDE_DIR}/..)
+endif()
+if(BUILD_TESTING)
+  add_custom_target(check-configurations
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/check_configurations.py
+      --root ${CMAKE_CURRENT_BINARY_DIR}/configuration-tests --source ${CMAKE_CURRENT_SOURCE_DIR} --cmake ${CMAKE_COMMAND}
+    VERBATIM)
+  if(CRYPTO_BUILD_RESEARCH)
+    add_test(NAME research_budget COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_research_budget.py
+      $<TARGET_FILE:vector_runner> $<TARGET_FILE:research_worker> ${CMAKE_C_COMPILER} ${OPENSSL_VERSION})
+  endif()
 endif()

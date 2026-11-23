@@ -19,3 +19,11 @@ Linux x86-64 GCC 14.2.0 Release `-O3 -DNDEBUG`(LTO 없음)의 `df_substitute`, `
 최종 코어 복원 후 ASan+UBSan 18/18, 독립 대조 25,600 prefix, 전체 연구 counts 재대조를 통과했습니다. 로컬 LeakSanitizer 환경 제한은 앞 절과 같습니다.
 
 재사용 실험 커밋의 Windows CI에서 `test_primitives`가 OpenSSL include 경로를 받지 않은 상태로 내부 헤더를 통해 `openssl/evp.h`를 요구하는 의존성 오류가 발견되었습니다. 최종 코어 복원으로 정수 연산 내부 헤더에서 EVP 의존성도 제거했습니다. Linux 암호 시험의 실패가 아니라 MSVC 빌드 의존성 결함이며, 후속 원격 빌드 결과를 별도 확인합니다.
+
+설치 소비자 검사는 일반 Release 빌드에서 실행합니다. sanitizer 계측 라이브러리를 계측하지 않은 외부 프로젝트에 링크하는 검사는 생략하고, 일반 CI 행렬의 별도 설치 시험으로 검증합니다.
+
+## 전체 재검증과 옵션 조합
+
+완전히 새 `build-fresh`에서 Release configure/build, CTest 20/20(설치 소비자·입력 생성 대조·시간 예산/중단 보존 포함), check-differential 25,600 prefix, research-smoke, research-full completed(고정 차분 1,572,864쌍 + 관련 tweak 655,360쌍), bench 8모드 × 5표본을 실행했습니다. 별도 빌드 트리에서 Python 없는 라이브러리 전용, 연구 전용, 벤치 전용 조합을 빌드했고, Python이 필요한 옵션에서 강제로 탐색을 막으면 configure가 실패하는 것을 확인했습니다.
+
+컴파일러 버전은 CMake가 탐색한 ID와 실제 버전을 연구/벤치 manifest에 전달합니다. MSVC에 지원되지 않는 `--version` 명령으로 버전을 추정하지 않습니다. 최신 manifest는 검증 당시의 명세·코어·도구 해시를 포함하며 과거 실행의 도구 해시가 달라질 수 있습니다.

@@ -24,6 +24,7 @@ def main():
     p.add_argument('--flags',default='')
     p.add_argument('--vector-runner',required=True)
     p.add_argument('--worker',required=True)
+    p.add_argument('--compiler-version')
     a=p.parse_args()
     experiments.VECTOR_RUNNER=a.vector_runner
     experiments.WORKER=a.worker
@@ -37,7 +38,7 @@ def main():
     def expired(): return stop or time.monotonic()-start>=a.budget
     expired.remaining=lambda: max(0,a.budget-(time.monotonic()-start))
     doc=dict(schema_version=1,mode=a.mode,status='incomplete',budget_seconds=a.budget,
-             manifest=manifest(a.compiler,a.openssl,a.flags),
+             manifest=manifest(a.compiler,a.openssl,a.flags,a.compiler_version),
              sample_rule='SHAKE256(ASCII(DualForm-T128/test/)+ASCII(label)+00+LE64(j)+LE32(r)+LE64(i), n)',
              implemented_experiments=[x[0] for x in EXPERIMENTS],experiments={})
     plan=[(name,fn) for name,fn in EXPERIMENTS if a.mode=='full' or name not in experiments.FULL_ONLY]

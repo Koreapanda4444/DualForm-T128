@@ -48,8 +48,9 @@ def main():
     p=argparse.ArgumentParser()
     p.add_argument('--exe',required=True);p.add_argument('--compiler',required=True)
     p.add_argument('--openssl',required=True);p.add_argument('--flags',default='');p.add_argument('--output',required=True)
+    p.add_argument('--compiler-version')
     a=p.parse_args()
-    doc=dict(manifest=manifest(a.compiler,a.openssl,a.flags),status='incomplete',modes={},
+    doc=dict(manifest=manifest(a.compiler,a.openssl,a.flags,a.compiler_version),status='incomplete',modes={},
         measurement_tools_sha256=digest_files(list((ROOT/'bench').glob('*.[ch]'))+list((ROOT/'bench').glob('*.py'))+[ROOT/'research/timer.h']),
         contract='C internal loops; input generation outside clock; API allocation and cleansing included; 128 untimed warmup operations per invocation; at least 5 measured samples >= 200ms',
         hardware_acceleration='OpenSSL automatic runtime dispatch, selected machine-code path unverified',cpu_affinity='not pinned',openssl_comparison='AES-256 ECB single-block reference only; no tweak; prepared Update versus fresh context+Init+Update+Final+free; different primitive and semantics')
