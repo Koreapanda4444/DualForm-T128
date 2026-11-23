@@ -111,3 +111,12 @@ endif()
 if(BUILD_TESTING)
   df_test(test_lifetime)
 endif()
+if(CRYPTO_BUILD_RESEARCH)
+  foreach(mode smoke full)
+    add_custom_target(research-${mode}
+      COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/research/run.py --mode ${mode}
+        --output ${CMAKE_CURRENT_BINARY_DIR}/research-${mode}.json --compiler ${CMAKE_C_COMPILER}
+        --openssl ${OPENSSL_VERSION} "--flags=${CMAKE_C_FLAGS} ${CMAKE_C_FLAGS_RELEASE}"
+      VERBATIM)
+  endforeach()
+endif()
