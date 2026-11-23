@@ -13,4 +13,13 @@ static inline int df_decode_tweak(const uint8_t key[32],const uint64_t enc[2],ui
     }
     df_store64(out,l);df_store64(out+8,r);return 1;
 }
+static inline void df_prefix(const uint64_t sk[24],const uint8_t in[16],uint8_t out[16],unsigned q,int inverse) {
+    uint64_t l=df_load64(in),r=df_load64(in+8);
+    for(unsigned j=0;j<q;j++) {
+        unsigned i=inverse?q-1-j:j;
+        if(inverse) { uint64_t x=r^((i&1)?df_odd(l^sk[i]):df_even(l^sk[i]));r=l;l=x; }
+        else { uint64_t x=l^((i&1)?df_odd(r^sk[i]):df_even(r^sk[i]));l=r;r=x; }
+    }
+    df_store64(out,l);df_store64(out+8,r);
+}
 #endif

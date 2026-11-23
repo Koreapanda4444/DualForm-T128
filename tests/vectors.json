@@ -1,0 +1,33 @@
+[
+  {
+    "name": "zero",
+    "key": "0000000000000000000000000000000000000000000000000000000000000000",
+    "tweak": "00000000000000000000000000000000",
+    "plaintext": "00000000000000000000000000000000",
+    "ciphertext": "3a6831014e21bb35e87d4e4e458ddda0",
+    "encoded": "1f077752a0853e27a373bfc1c72aa0c7",
+    "sk0": "bdd7239a08f69e71",
+    "sk1": "e22dc2ee713134df",
+    "prefix1": "00000000000000001630897b462f7e09",
+    "prefix2": "1630897b462f7e090ae2b5845d595634"
+  },
+  {
+    "name": "sequential",
+    "key": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+    "tweak": "000102030405060708090a0b0c0d0e0f",
+    "plaintext": "000102030405060708090a0b0c0d0e0f",
+    "ciphertext": "cab683110ef545617d4e892a779daacf",
+    "encoded": "5a0fefd45741845ef750071d43f497f1",
+    "sk0": "04c152132b664e63",
+    "sk1": "cd5254628c0ff444",
+    "prefix1": "08090a0b0c0d0e0fa7900b432a21c54b",
+    "prefix2": "a7900b432a21c54b92fd8f9ae3d592a0"
+  },
+  {
+    "name": "ones",
+    "key": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+    "tweak": "ffffffffffffffffffffffffffffffff",
+    "plaintext": "ffffffffffffffffffffffffffffffff",
+    "ciphertext": "d653cb3700ff90e79631907cbebe9d8e"
+  }
+]
