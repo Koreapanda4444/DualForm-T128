@@ -18,6 +18,7 @@ dualform_status dualform_key_ctx_create(dualform_key_ctx **out_ctx,const uint8_t
 void dualform_key_ctx_free(dualform_key_ctx *ctx);
 dualform_status dualform_tweak_ctx_create(dualform_tweak_ctx **out_ctx,const dualform_key_ctx *key_ctx,const uint8_t *tweak,size_t tweak_len);
 void dualform_tweak_ctx_free(dualform_tweak_ctx *ctx);
+dualform_status dualform_encrypt_block(const dualform_tweak_ctx *ctx,const uint8_t *input,size_t input_len,uint8_t *output,size_t output_capacity);
 #ifdef __cplusplus
 }
 #endif
