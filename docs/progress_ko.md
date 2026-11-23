@@ -9,8 +9,8 @@
 | 3 | feat: implement endian and rotation primitives | 완료 | e3de95d0d4f47fc4df9ea58de7692704ef1a6dca | — | 완료 / workflow 도입 전 |
 | 4 | feat: add checked shake256 backend | 완료 | c967798804a708465c91751415c5b0c5075205f1 | — | 완료 / workflow 도입 전 |
 | 5 | feat: implement constant-flow nibble substitution | 완료 | 439fb53ddfcc6e13e2f74904f2ca5bbb9dda49d9 | — | 완료 / workflow 도입 전 |
-| 6 | feat: implement alternating round functions | 완료 | 현재 커밋 (Git 이력) | Release CTest 5/5; boundary/carry/reference equality | 게시 후 원격 확인 |
-| 7 | feat: implement cached base key context | 대기 | — | — | — |
+| 6 | feat: implement alternating round functions | 완료 | 732d32db5d1000012f67231c7069944cbe55c647 | Release CTest 5/5; boundary/carry/reference equality | 완료 / workflow 도입 전 |
+| 7 | feat: implement cached base key context | 완료 | 현재 커밋 (Git 이력) | CTest 6/6; copied key ownership and direct SHAKE base comparison | 게시 후 원격 확인 |
 | 8 | feat: implement keyed tweak permutation | 대기 | — | — | — |
 | 9 | feat: implement independent python reference | 대기 | — | — | — |
 | 10 | feat: implement prepared tweak context | 대기 | — | — | — |

@@ -26,4 +26,5 @@ static inline void df_store32(uint8_t *p,uint32_t x) {
 uint64_t df_substitute(uint64_t x);
 uint64_t df_even(uint64_t x);
 uint64_t df_odd(uint64_t x);
+struct dualform_key_ctx { uint8_t key[32]; uint64_t base[24]; };
 #endif
