@@ -12,8 +12,8 @@
 | 6 | feat: implement alternating round functions | 완료 | 732d32db5d1000012f67231c7069944cbe55c647 | Release CTest 5/5; boundary/carry/reference equality | 완료 / workflow 도입 전 |
 | 7 | feat: implement cached base key context | 완료 | fe9561189c387b9789e8667db2d8d6f61130d0eb | CTest test_key passes after correcting domain length; 7/7 including pending tweak test | 완료 / workflow 도입 전 |
 | 8 | feat: implement keyed tweak permutation | 완료 | f2187dc19bcf68640488f8a4ee78393b208a2137 | CTest 7/7; zero/sequential encoding KAT and inverse roundtrip | 완료 / workflow 도입 전 |
-| 9 | feat: implement independent python reference | 완료 | 현재 커밋 (Git 이력) | CTest 8/8; Python 3 KATs and all 75 prefix inverses | 게시 후 원격 확인 |
-| 10 | feat: implement prepared tweak context | 대기 | — | — | — |
+| 9 | feat: implement independent python reference | 완료 | 93d55dcb15ec11174fbea8c7ea450c0ea357039f | CTest 8/8; Python 3 KATs and all 75 prefix inverses | 완료 / workflow 도입 전 |
+| 10 | feat: implement prepared tweak context | 완료 | 현재 커밋 (Git 이력) | CTest 9/9; SK0/SK1 KAT, D0/D1 excluded, parent-independent ownership | 게시 후 원격 확인 |
 | 11 | feat: implement full-round block encryption | 대기 | — | — | — |
 | 12 | feat: implement full-round block decryption | 대기 | — | — | — |
 | 13 | test: add fixed vectors and round traces | 대기 | — | — | — |

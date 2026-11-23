@@ -28,4 +28,5 @@ uint64_t df_even(uint64_t x);
 uint64_t df_odd(uint64_t x);
 struct dualform_key_ctx { uint8_t key[32]; uint64_t base[24]; };
 int df_encode_tweak(const uint8_t key[32],const uint8_t tweak[16],uint64_t enc[2]);
+struct dualform_tweak_ctx { uint64_t sk[24]; };
 #endif

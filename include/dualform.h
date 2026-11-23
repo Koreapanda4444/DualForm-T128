@@ -16,6 +16,8 @@ typedef enum {
 } dualform_status;
 dualform_status dualform_key_ctx_create(dualform_key_ctx **out_ctx,const uint8_t *key,size_t key_len);
 void dualform_key_ctx_free(dualform_key_ctx *ctx);
+dualform_status dualform_tweak_ctx_create(dualform_tweak_ctx **out_ctx,const dualform_key_ctx *key_ctx,const uint8_t *tweak,size_t tweak_len);
+void dualform_tweak_ctx_free(dualform_tweak_ctx *ctx);
 #ifdef __cplusplus
 }
 #endif
