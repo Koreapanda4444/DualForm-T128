@@ -18,8 +18,8 @@
 | 12 | feat: implement full-round block decryption | 완료 | fc88578aa0b4f4f3c6fb1c4496047f5ecd4de187 | CTest 10/10; all three fixed ciphertext decryptions and in-place roundtrips | 완료 / workflow 도입 전 |
 | 13 | test: add fixed vectors and round traces | 완료 | 4e698f2c6195626d0143377418fe874b85aa59da | CTest 11/11; fixed intermediate keys/encodings and 75 C/Python prefixes | 완료 / workflow 도입 전 |
 | 14 | test: cross-check independent implementations | 완료 | d0aee07c60cc39e76af7fe058643f759d1115120 | check-differential: 1024 combos / 25600 prefixes / 24576 subkeys; no mismatches | 완료 / workflow 도입 전 |
-| 15 | test: enforce context ownership and failure contracts | 완료 | 현재 커밋 (Git 이력) | CTest 12/12; every allocation/SHAKE gate failure, NULL slots, cleansed frees and live allocation counts | 게시 후 원격 확인 |
-| 16 | test: cover buffer boundaries and aliasing | 대기 | — | — | — |
+| 15 | test: enforce context ownership and failure contracts | 완료 | 12de21726a04bcd3da09476eb1e44a455bad420a | CTest 12/12; every allocation/SHAKE gate failure, NULL slots, cleansed frees and live allocation counts | 완료 / workflow 도입 전 |
+| 16 | test: cover buffer boundaries and aliasing | 완료 | 현재 커밋 (Git 이력) | CTest 13/13; all 30 partial overlaps per direction, exact/adjacent buffers and sentinels | 게시 후 원격 확인 |
 | 17 | test: add sanitizer regression checks | 대기 | — | — | — |
 | 18 | test: verify portable compiler and platform builds | 대기 | — | — | — |
 | 19 | feat: add reproducible research runner | 대기 | — | — | — |
