@@ -19,16 +19,21 @@ uint64_t df_odd(uint64_t x) {
 }
 #include "shake256.h"
 #include <openssl/crypto.h>
-int df_encode_tweak(const uint8_t key[32],const uint8_t tweak[16],uint64_t enc[2]) {
+int df_encode_tweak_with(EVP_MD_CTX *hash,const uint8_t key[32],const uint8_t tweak[16],uint64_t enc[2]) {
     uint64_t l=df_load64(tweak),r=df_load64(tweak+8);
     static const char domain[]="DualForm-T128/tweak-preperm";
     uint8_t block[8],digest[8];
     for(uint8_t i=0;i<6;i++) {
         df_store64(block,r); df_span spans[]={{domain,sizeof(domain)},{&i,1},{key,32},{block,8}};
-        if(!df_shake(spans,4,digest,8)) {
+        if(!df_shake_with(hash,spans,4,digest,8)) {
             OPENSSL_cleanse(block,8);OPENSSL_cleanse(digest,8);return 0;
         }
         uint64_t next=l^df_load64(digest);l=r;r=next;
     }
     enc[0]=l;enc[1]=r;OPENSSL_cleanse(block,8);OPENSSL_cleanse(digest,8);return 1;
+}
+
+int df_encode_tweak(const uint8_t key[32],const uint8_t tweak[16],uint64_t enc[2]) {
+    EVP_MD_CTX *hash=df_shake_new();if(!hash)return 0;
+    int ok=df_encode_tweak_with(hash,key,tweak,enc);df_shake_free(hash);return ok;
 }
