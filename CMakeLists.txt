@@ -154,3 +154,16 @@ if(BUILD_TESTING AND CRYPTO_BUILD_RESEARCH)
     --output ${CMAKE_CURRENT_BINARY_DIR}/research-ctest.json --compiler ${CMAKE_C_COMPILER} --openssl ${OPENSSL_VERSION}
     --vector-runner $<TARGET_FILE:vector_runner> --worker $<TARGET_FILE:research_worker>)
 endif()
+include(GNUInstallDirs)
+include(CMakePackageConfigHelpers)
+install(TARGETS dualform EXPORT DualFormTargets ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
+install(FILES include/dualform.h DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+install(EXPORT DualFormTargets FILE DualFormTargets.cmake NAMESPACE DualForm:: DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/DualForm)
+configure_package_config_file(cmake/DualFormConfig.cmake.in ${CMAKE_CURRENT_BINARY_DIR}/DualFormConfig.cmake
+  INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/DualForm)
+write_basic_package_version_file(${CMAKE_CURRENT_BINARY_DIR}/DualFormConfigVersion.cmake VERSION ${PROJECT_VERSION} COMPATIBILITY SameMajorVersion)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/DualFormConfig.cmake ${CMAKE_CURRENT_BINARY_DIR}/DualFormConfigVersion.cmake DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/DualForm)
+if(BUILD_TESTING AND NOT CRYPTO_ENABLE_SANITIZERS)
+  add_test(NAME installed_consumer COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/check_install.py
+    --build ${CMAKE_CURRENT_BINARY_DIR} --config $<CONFIG> --cmake ${CMAKE_COMMAND} --ctest ${CMAKE_CTEST_COMMAND} --openssl-root ${OPENSSL_INCLUDE_DIR}/..)
+endif()

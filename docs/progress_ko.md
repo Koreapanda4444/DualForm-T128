@@ -34,7 +34,7 @@
 | 28 | feat: add labeled openssl comparison benchmarks | 완료 | 8acc2fa3ccea024aa2a159a574d8f068c212ec50 | CTest 18/18; 8 modes with 5x>=200ms raw samples; AES-256 ECB boundaries labeled | 게시 후 원격 확인 |
 | 29 | feat: reuse shake contexts within tweak preparation | 완료 | 484489dd12f3a66bcf5eef6791666cc2c9b63e27 | CTest 18/18; 25600 prefixes and full attack counts identical; measured performance mixed, adoption reviewed next | 게시 후 원격 확인 |
 | 30 | test: audit secret handling and optimized equivalence | 완료 | 46edfd6ef71825c33f7ffc9e9239d39f2f7168d0 | ASan+UBSan 18/18; full counts identical; disassembly audited; trial removed and MSVC include regression corrected | 게시 후 원격 확인 |
-| 31 | docs: publish measured performance and research results | 완료 | 현재 커밋 (Git 이력) | Raw five-sample measurements and all full research artifacts published; selected core hashes match | 게시 후 원격 확인 |
-| 32 | feat: add library installation and consumer smoke tests | 대기 | — | — | — |
+| 31 | docs: publish measured performance and research results | 완료 | d21c464bf4985e45e4a6c55e4b363512e3fa7669 | Raw five-sample measurements and all full research artifacts published; selected core hashes match | 게시 후 원격 확인 |
+| 32 | feat: add library installation and consumer smoke tests | 완료 | 현재 커밋 (Git 이력) | CTest 19/19; temporary-prefix external CMake consumer KAT; installed header and production symbol audit passed | 게시 후 원격 확인 |
 | 33 | test: verify clean checkout and complete validation targets | 대기 | — | — | — |
 | 34 | docs: finalize research baseline and handoff status | 대기 | — | — | — |
