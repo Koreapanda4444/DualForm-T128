@@ -1,5 +1,6 @@
 #include "workload.h"
 #include "timer.h"
+#include "openssl_compare.h"
 #include <openssl/crypto.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -7,11 +8,13 @@
 #include <math.h>
 int main(int argc,char **argv) {
     if(argc!=3) return 2;
+    int aes=!strcmp(argv[1],"aes256_prepared") || !strcmp(argv[1],"aes256_key_block");
     unsigned mode=6;
     for(unsigned i=0;i<6;i++) if(!strcmp(argv[1],df_modes[i])) mode=i;
     char *end=NULL;unsigned long long raw=strtoull(argv[2],&end,10);
-    if(mode==6 || !end || *end || !raw || raw>50000000) return 2;
+    if((mode==6 && !aes) || !end || *end || !raw || raw>50000000) return 2;
     size_t n=(size_t)raw;
+    if(aes)return df_aes_sample(argv[1],n,!strcmp(argv[1],"aes256_key_block"));
     uint8_t *keys=NULL,*tweaks=NULL;
     if(mode==1 || mode==4) { keys=calloc(n,32);if(!keys)return 3; }
     if(mode>=2 && mode<=4) { tweaks=calloc(n,16);if(!tweaks){free(keys);return 3;} }

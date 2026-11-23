@@ -5,7 +5,7 @@ import sys
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'research'))
 from common import manifest,write_json
-MODES=['prepared_encrypt','key_setup','tweak_setup','tweak_and_block','key_tweak_and_block','prepared_decrypt']
+MODES=['prepared_encrypt','key_setup','tweak_setup','tweak_and_block','key_tweak_and_block','prepared_decrypt','aes256_prepared','aes256_key_block']
 
 import math
 import statistics
@@ -52,7 +52,7 @@ def main():
     doc=dict(manifest=manifest(a.compiler,a.openssl,a.flags),status='incomplete',modes={},
         measurement_tools_sha256=digest_files(list((ROOT/'bench').glob('*.[ch]'))+list((ROOT/'bench').glob('*.py'))+[ROOT/'research/timer.h']),
         contract='C internal loops; input generation outside clock; API allocation and cleansing included; 128 untimed warmup operations per invocation; at least 5 measured samples >= 200ms',
-        hardware_acceleration='OpenSSL automatic runtime dispatch, selected machine-code path unverified',cpu_affinity='not pinned')
+        hardware_acceleration='OpenSSL automatic runtime dispatch, selected machine-code path unverified',cpu_affinity='not pinned',openssl_comparison='AES-256 ECB single-block reference only; no tweak; prepared Update versus fresh context+Init+Update+Final+free; different primitive and semantics')
     for mode in MODES:
         doc['modes'][mode]=collect(a.exe,mode);write_json(a.output,doc)
     doc['status']='completed';write_json(a.output,doc)
