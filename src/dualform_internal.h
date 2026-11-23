@@ -23,4 +23,5 @@ static inline void df_store64(uint8_t *p,uint64_t x) {
 static inline void df_store32(uint8_t *p,uint32_t x) {
     for(unsigned i=0;i<4;i++) p[i]=(uint8_t)(x>>(8*i));
 }
+uint64_t df_substitute(uint64_t x);
 #endif
