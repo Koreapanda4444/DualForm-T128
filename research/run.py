@@ -40,7 +40,9 @@ def main():
              manifest=manifest(a.compiler,a.openssl,a.flags),
              sample_rule='SHAKE256(ASCII(DualForm-T128/test/)+ASCII(label)+00+LE64(j)+LE32(r)+LE64(i), n)',
              implemented_experiments=[x[0] for x in EXPERIMENTS],experiments={})
-    for name,fn in EXPERIMENTS:
+    plan=[(name,fn) for name,fn in EXPERIMENTS if a.mode=='full' or name not in experiments.FULL_ONLY]
+    doc['selected_experiments']=[name for name,_ in plan]
+    for name,fn in plan:
         if expired():break
         t=time.monotonic()
         try: item=fn(a.mode,expired)
@@ -51,7 +53,7 @@ def main():
         validate(doc);write_json(a.output,doc)
         if item['status']=='error':break
     states=[x['status'] for x in doc['experiments'].values()]
-    doc['status']='error' if 'error' in states else 'completed' if len(states)==len(EXPERIMENTS) and all(x=='completed' for x in states) else 'incomplete'
+    doc['status']='error' if 'error' in states else 'completed' if len(states)==len(plan) and all(x=='completed' for x in states) else 'incomplete'
     doc['elapsed_seconds']=time.monotonic()-start
     validate(doc);write_json(a.output,doc)
     print(f"research-{a.mode}: {doc['status']} ({doc['elapsed_seconds']:.3f}s), {a.output}")

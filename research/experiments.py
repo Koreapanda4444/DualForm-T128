@@ -152,3 +152,25 @@ def fixed_bias(mode,budget):
                 multiple_tests=48,fixture_rule='bias-key/tweak(j,0,0); bias-plain(j,r,i)',
                 interpretation='Hoeffding bound under independent Bernoulli approximation; no trail/hull proof or CI p-value gate')
 EXPERIMENTS.append(('fixed-four-round-differential',fixed_bias))
+
+FULL_ONLY={'bounded-related-tweak-screening'}
+
+def related_screening(mode,budget):
+    rows=[]
+    for j in range(8):
+        for r in (2,4,8,12,24):
+            for v in range(4):
+                if budget():break
+                row=worker('related',j,r,4096,v,budget)
+                row['bit_bounds']=[bounds(k,row['executed'],20480) for k in row['counts']]
+                rows.append(row)
+                if row['status']!='completed':break
+            if budget():break
+        if budget():break
+    executed=sum(x['executed'] for x in rows)
+    return dict(status='completed' if executed==655360 else 'incomplete',requested=655360,executed=executed,settings=rows,
+                multiple_tests=20480,output_bit_order='serialized byte index, least significant bit first',
+                tweak_deltas=[[1,0],[0,1],[1,1],[1<<63,1<<63]],plaintext_delta='(b,a)',
+                fixture_rule='related-key(j,0,0), related-tweak/plain(4*j+v,r,i)',
+                limitation='bounded screening; additional selection needs an independent holdout')
+EXPERIMENTS.append(('bounded-related-tweak-screening',related_screening))

@@ -12,3 +12,16 @@ for j,r,n in [(0,4,256),(3,8,128),(7,24,64)]:
     row=json.loads(subprocess.check_output([sys.argv[1],'bias',str(j),str(r),str(n),'0','60','v1'],text=True))
     assert row['counts']==[count] and row['executed']==n
 print('C worker sample/bit counts match independent Python oracle')
+for j,r,v,n in [(0,2,0,16),(3,8,2,16),(7,24,3,16)]:
+    k=ref.sample('related-key',j,0,0,32);counts=[0]*128
+    a,b=[(1,0),(0,1),(1,1),(1<<63,1<<63)][v]
+    for i in range(n):
+        t=ref.sample('related-tweak',4*j+v,r,i,16);p=ref.sample('related-plain',4*j+v,r,i,16)
+        import struct
+        tl,tr=struct.unpack('<QQ',t);pl,pr=struct.unpack('<QQ',p)
+        t2=struct.pack('<QQ',tl^a,tr^b);p2=struct.pack('<QQ',pl^b,pr^a)
+        c=ref.encrypt(ref.schedule(k,t),p,r);d=ref.encrypt(ref.schedule(k,t2),p2,r)
+        for bit in range(128):counts[bit]+=((c[bit//8]^d[bit//8])>>(bit%8))&1
+    row=json.loads(subprocess.check_output([sys.argv[1],'related',str(j),str(r),str(n),str(v),'60','v1'],text=True))
+    assert row['counts']==counts and row['executed']==n
+print('Related-tweak generation and all 128 bit counts match Python')
