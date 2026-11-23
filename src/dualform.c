@@ -1,13 +1,13 @@
 #include "dualform.h"
 #include "dualform_internal.h"
 #include "shake256.h"
-#include <stdlib.h>
+#include "df_memory.h"
 #include <string.h>
 #include <openssl/crypto.h>
 dualform_status dualform_key_ctx_create(dualform_key_ctx **out,const uint8_t *key,size_t len) {
     if(!out || *out || !key) return DUALFORM_EINVAL;
     if(len!=32) return DUALFORM_ELENGTH;
-    dualform_key_ctx *ctx=calloc(1,sizeof(*ctx));
+    dualform_key_ctx *ctx=df_alloc(sizeof(*ctx));
     if(!ctx) return DUALFORM_ENOMEM;
     uint8_t base[192];
     static const char domain[]="DualForm-T128/base";
@@ -20,12 +20,12 @@ dualform_status dualform_key_ctx_create(dualform_key_ctx **out,const uint8_t *ke
     OPENSSL_cleanse(base,sizeof(base)); *out=ctx; return DUALFORM_OK;
 }
 void dualform_key_ctx_free(dualform_key_ctx *ctx) {
-    if(ctx) { OPENSSL_cleanse(ctx,sizeof(*ctx)); free(ctx); }
+    if(ctx) { OPENSSL_cleanse(ctx,sizeof(*ctx)); df_release(ctx,sizeof(*ctx)); }
 }
 dualform_status dualform_tweak_ctx_create(dualform_tweak_ctx **out,const dualform_key_ctx *key,const uint8_t *tweak,size_t len) {
     if(!out || *out || !key || !tweak) return DUALFORM_EINVAL;
     if(len!=16) return DUALFORM_ELENGTH;
-    dualform_tweak_ctx *ctx=calloc(1,sizeof(*ctx));
+    dualform_tweak_ctx *ctx=df_alloc(sizeof(*ctx));
     if(!ctx) return DUALFORM_ENOMEM;
     uint8_t derived[192];uint64_t enc[2]={0};
     static const char domain[]="DualForm-T128/derived";
@@ -40,7 +40,7 @@ dualform_status dualform_tweak_ctx_create(dualform_tweak_ctx **out,const dualfor
     *out=ctx;return DUALFORM_OK;
 }
 void dualform_tweak_ctx_free(dualform_tweak_ctx *ctx) {
-    if(ctx) { OPENSSL_cleanse(ctx,sizeof(*ctx));free(ctx); }
+    if(ctx) { OPENSSL_cleanse(ctx,sizeof(*ctx));df_release(ctx,sizeof(*ctx)); }
 }
 static int df_overlap(const void *a,size_t an,const void *b,size_t bn) {
     uintptr_t x=(uintptr_t)a,y=(uintptr_t)b;
