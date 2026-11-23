@@ -1,0 +1,24 @@
+{
+  "compiler": "GCC 14.2.0",
+  "flags": "-O3 -DNDEBUG -Wall -Wextra -Wpedantic -Werror; no LTO",
+  "platform": "Linux x86-64",
+  "tool": "GNU objdump (GNU Binutils for Debian) 2.44",
+  "source_sha256": "1e8127741baa3f4d2e0e614d2772d563244a7ed121d33ee5616bcdae3d121fc0",
+  "object_sha256": "cd265d1adc3869bb15d358b33ddf6d0e30fa35165343365b2cc612aa75bdc217",
+  "functions": {
+    "df_substitute": {
+      "instructions": 81,
+      "conditional_jumps": []
+    },
+    "df_even": {
+      "instructions": 87,
+      "conditional_jumps": []
+    },
+    "df_odd": {
+      "instructions": 18,
+      "conditional_jumps": []
+    }
+  },
+  "cleanse_relocation_present": true,
+  "scope": "Manual register/stack access review of these three functions; not a universal constant-time proof, dependency audit, or a review of other target binaries"
+}

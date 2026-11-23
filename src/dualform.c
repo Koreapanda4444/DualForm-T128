@@ -30,9 +30,7 @@ dualform_status dualform_tweak_ctx_create(dualform_tweak_ctx **out,const dualfor
     uint8_t derived[192];uint64_t enc[2]={0};
     static const char domain[]="DualForm-T128/derived";
     df_span spans[]={{domain,sizeof(domain)},{key->key,32},{tweak,16}};
-    EVP_MD_CTX *hash=df_shake_new();
-    int ok=hash && df_encode_tweak_with(hash,key->key,tweak,enc) && df_shake_with(hash,spans,3,derived,192);
-    df_shake_free(hash);
+    int ok=df_encode_tweak(key->key,tweak,enc) && df_shake(spans,3,derived,192);
     if(ok) {
         ctx->sk[0]=key->base[0]^enc[0];ctx->sk[1]=key->base[1]^enc[1];
         for(unsigned i=2;i<24;i++) ctx->sk[i]=key->base[i]^df_load64(derived+8*i);

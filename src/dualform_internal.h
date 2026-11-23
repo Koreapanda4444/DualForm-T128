@@ -2,7 +2,6 @@
 #define DUALFORM_INTERNAL_H
 #include <stdint.h>
 #include <stddef.h>
-#include "shake256.h"
 #ifndef UINTPTR_MAX
 #error "DualForm requires uintptr_t"
 #endif
@@ -30,5 +29,4 @@ uint64_t df_odd(uint64_t x);
 struct dualform_key_ctx { uint8_t key[32]; uint64_t base[24]; };
 int df_encode_tweak(const uint8_t key[32],const uint8_t tweak[16],uint64_t enc[2]);
 struct dualform_tweak_ctx { uint64_t sk[24]; };
-int df_encode_tweak_with(EVP_MD_CTX *hash,const uint8_t key[32],const uint8_t tweak[16],uint64_t enc[2]);
 #endif
