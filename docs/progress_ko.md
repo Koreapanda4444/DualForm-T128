@@ -19,8 +19,8 @@
 | 13 | test: add fixed vectors and round traces | 완료 | 4e698f2c6195626d0143377418fe874b85aa59da | CTest 11/11; fixed intermediate keys/encodings and 75 C/Python prefixes | 완료 / workflow 도입 전 |
 | 14 | test: cross-check independent implementations | 완료 | d0aee07c60cc39e76af7fe058643f759d1115120 | check-differential: 1024 combos / 25600 prefixes / 24576 subkeys; no mismatches | 완료 / workflow 도입 전 |
 | 15 | test: enforce context ownership and failure contracts | 완료 | 12de21726a04bcd3da09476eb1e44a455bad420a | CTest 12/12; every allocation/SHAKE gate failure, NULL slots, cleansed frees and live allocation counts | 완료 / workflow 도입 전 |
-| 16 | test: cover buffer boundaries and aliasing | 완료 | 현재 커밋 (Git 이력) | CTest 13/13; all 30 partial overlaps per direction, exact/adjacent buffers and sentinels | 게시 후 원격 확인 |
-| 17 | test: add sanitizer regression checks | 대기 | — | — | — |
+| 16 | test: cover buffer boundaries and aliasing | 완료 | d41493dde8dcfd27652ac9d2147b1cefcf30fc51 | CTest 13/13; all 30 partial overlaps per direction, exact/adjacent buffers and sentinels | 완료 / workflow 도입 전 |
+| 17 | test: add sanitizer regression checks | 완료 | 현재 커밋 (Git 이력) | Release 14/14; ASan+UBSan Debug 14/14 with local LSan unavailable under ptrace | 게시 후 원격 확인 |
 | 18 | test: verify portable compiler and platform builds | 대기 | — | — | — |
 | 19 | feat: add reproducible research runner | 대기 | — | — | — |
 | 20 | test: verify round function inversion | 대기 | — | — | — |
