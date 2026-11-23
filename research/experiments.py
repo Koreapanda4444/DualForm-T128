@@ -94,3 +94,30 @@ def subkey_recovery(mode,budget):
                 recovered='SK0 and SK1 only; not the master key or 24-round schedule',verified_second_plaintexts=executed,failures=0,
                 fixture_rule='kat-key/kat-tweak/kat-plain and recovery-verify; j=0..N-1, r=i=0')
 EXPERIMENTS.append(('two-round-subkey-recovery',subkey_recovery))
+
+def cancellation(mode,budget):
+    n=16 if mode=='smoke' else 1024
+    executed=positive=observed=0
+    for offset in range(0,n,16):
+        if budget():break
+        cases=[];controls=[]
+        for j in range(offset,min(offset+16,n)):
+            k=sample('control-key',j,0,0,32);t=sample('control-tweak',j,0,0,16);p=sample('control-plain',j,0,0,16)
+            a,b=struct.unpack('<QQ',sample('control-delta',j,0,0,16))
+            dl=struct.pack('<QQ',b,a);dt=struct.pack('<QQ',a,b)
+            t2=bytes(x^y for x,y in zip(t,dt));p2=bytes(x^y for x,y in zip(p,dl))
+            base=struct.unpack('<24Q',shake('DualForm-T128/base',k,192))
+            low,high=struct.unpack('<QQ',t);low2,high2=struct.unpack('<QQ',t2)
+            c1=encrypt((base[0]^low,base[1]^high),p,2);c2=encrypt((base[0]^low2,base[1]^high2),p2,2)
+            assert bytes(x^y for x,y in zip(c1,c2))==dl
+            controls.append(dl);cases.extend([(k,t,p),(k,t2,p2)])
+        rows=c_cases(cases)
+        for i,delta in enumerate(controls):
+            c1=bytes.fromhex(rows[2*i]['trace'][2]);c2=bytes.fromhex(rows[2*i+1]['trace'][2])
+            observed+=bytes(x^y for x,y in zip(c1,c2))==delta
+            positive+=1;executed+=1
+    return dict(status='completed' if executed==n else 'incomplete',requested=n,executed=executed,rounds=2,
+                positive_control_successes=positive,current_schedule_successes=observed,
+                fixture_rule='control-key/tweak/plain/delta; j=0..N-1, r=i=0',
+                limitation='current success count is observed, not an acceptance threshold or proof against related-tweak attacks')
+EXPERIMENTS.append(('public-tweak-cancellation-control',cancellation))
