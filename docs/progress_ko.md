@@ -16,8 +16,8 @@
 | 10 | feat: implement prepared tweak context | 완료 | c380c22e1a4ded46f27a18dfd8e5da70963b5421 | CTest 9/9; SK0/SK1 KAT, D0/D1 excluded, parent-independent ownership | 완료 / workflow 도입 전 |
 | 11 | feat: implement full-round block encryption | 완료 | 44c466241c17f615dcb30ff419b890933136212d | CTest 10/10; three KATs, in-place, parent-free encryption and output tail | 완료 / workflow 도입 전 |
 | 12 | feat: implement full-round block decryption | 완료 | fc88578aa0b4f4f3c6fb1c4496047f5ecd4de187 | CTest 10/10; all three fixed ciphertext decryptions and in-place roundtrips | 완료 / workflow 도입 전 |
-| 13 | test: add fixed vectors and round traces | 완료 | 현재 커밋 (Git 이력) | CTest 11/11; fixed intermediate keys/encodings and 75 C/Python prefixes | 게시 후 원격 확인 |
-| 14 | test: cross-check independent implementations | 대기 | — | — | — |
+| 13 | test: add fixed vectors and round traces | 완료 | 4e698f2c6195626d0143377418fe874b85aa59da | CTest 11/11; fixed intermediate keys/encodings and 75 C/Python prefixes | 완료 / workflow 도입 전 |
+| 14 | test: cross-check independent implementations | 완료 | 현재 커밋 (Git 이력) | check-differential: 1024 combos / 25600 prefixes / 24576 subkeys; no mismatches | 게시 후 원격 확인 |
 | 15 | test: enforce context ownership and failure contracts | 대기 | — | — | — |
 | 16 | test: cover buffer boundaries and aliasing | 대기 | — | — | — |
 | 17 | test: add sanitizer regression checks | 대기 | — | — | — |

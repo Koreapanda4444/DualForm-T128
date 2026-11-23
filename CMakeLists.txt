@@ -86,3 +86,8 @@ if(BUILD_TESTING)
   target_link_libraries(vector_runner PRIVATE dualform)
   add_test(NAME fixed_vectors COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/check_vectors.py $<TARGET_FILE:vector_runner>)
 endif()
+if(BUILD_TESTING)
+  add_custom_target(check-differential
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/check_differential.py $<TARGET_FILE:vector_runner>
+    DEPENDS vector_runner VERBATIM)
+endif()
