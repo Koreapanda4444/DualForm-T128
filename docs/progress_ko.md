@@ -4,12 +4,12 @@
 
 | 계획 | 제목 | 상태 | SHA | 마지막 검사 | push / CI |
 | --- | --- | --- | --- | --- | --- |
-| 1 | docs: define fresh repository scope and commit plan | 완료 | 678c7dd | 수식·KAT·34행 대조 | 완료 / workflow 없음 |
-| 2 | feat: add portable cmake build and test harness | 대기 | — | — | — |
-| 3 | feat: implement endian and rotation primitives | 대기 | — | — | — |
-| 4 | feat: add checked shake256 backend | 대기 | — | — | — |
-| 5 | feat: implement constant-flow nibble substitution | 대기 | — | — | — |
-| 6 | feat: implement alternating round functions | 대기 | — | — | — |
+| 1 | docs: define fresh repository scope and commit plan | 완료 | 678c7ddc62c653a0b6839e6da19e1461948b3a71 | 수식·KAT·34행 대조 | 완료 / workflow 도입 전 |
+| 2 | feat: add portable cmake build and test harness | 완료 | 98b314d1910ce74e00176691856d486674825f7f | — | 완료 / workflow 도입 전 |
+| 3 | feat: implement endian and rotation primitives | 완료 | e3de95d0d4f47fc4df9ea58de7692704ef1a6dca | — | 완료 / workflow 도입 전 |
+| 4 | feat: add checked shake256 backend | 완료 | c967798804a708465c91751415c5b0c5075205f1 | — | 완료 / workflow 도입 전 |
+| 5 | feat: implement constant-flow nibble substitution | 완료 | 439fb53ddfcc6e13e2f74904f2ca5bbb9dda49d9 | — | 완료 / workflow 도입 전 |
+| 6 | feat: implement alternating round functions | 완료 | 현재 커밋 (Git 이력) | Release CTest 5/5; boundary/carry/reference equality | 게시 후 원격 확인 |
 | 7 | feat: implement cached base key context | 대기 | — | — | — |
 | 8 | feat: implement keyed tweak permutation | 대기 | — | — | — |
 | 9 | feat: implement independent python reference | 대기 | — | — | — |

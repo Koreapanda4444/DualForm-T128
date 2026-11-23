@@ -24,4 +24,6 @@ static inline void df_store32(uint8_t *p,uint32_t x) {
     for(unsigned i=0;i<4;i++) p[i]=(uint8_t)(x>>(8*i));
 }
 uint64_t df_substitute(uint64_t x);
+uint64_t df_even(uint64_t x);
+uint64_t df_odd(uint64_t x);
 #endif
