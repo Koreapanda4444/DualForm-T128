@@ -64,3 +64,12 @@ dualform_status dualform_encrypt_block(const dualform_tweak_ctx *ctx,const uint8
     uint8_t result[16];df_store64(result,l);df_store64(result+8,r);memcpy(out,result,16);
     OPENSSL_cleanse(result,sizeof(result));return DUALFORM_OK;
 }
+dualform_status dualform_decrypt_block(const dualform_tweak_ctx *ctx,const uint8_t *in,size_t len,uint8_t *out,size_t cap) {
+    dualform_status st=df_check_block(ctx,in,len,out,cap);if(st) return st;
+    uint64_t l=df_load64(in),r=df_load64(in+8);
+    for(int i=23;i>=0;i--) {
+        uint64_t prev=r^((i&1)?df_odd(l^ctx->sk[i]):df_even(l^ctx->sk[i])); r=l;l=prev;
+    }
+    uint8_t result[16];df_store64(result,l);df_store64(result+8,r);memcpy(out,result,16);
+    OPENSSL_cleanse(result,sizeof(result));return DUALFORM_OK;
+}

@@ -17,6 +17,10 @@ int main(void) {
         assert(dualform_encrypt_block(ctx,p,16,p,16)==0 && !memcmp(p,out,16));
         assert(dualform_encrypt_block(ctx,p,15,out,18)==DUALFORM_ELENGTH);
         assert(!memcmp(p,out,16));
+        assert(dualform_decrypt_block(ctx,p,16,p,16)==0);
+        assert(!memcmp(p,t,16));
+        assert(dualform_decrypt_block(ctx,out,16,out,18)==0 && !memcmp(out,t,16));
+        assert(out[16]==0xa5 && out[17]==0xa5);
         dualform_tweak_ctx_free(ctx);
     }
     return 0;
