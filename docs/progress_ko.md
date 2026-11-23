@@ -10,8 +10,8 @@
 | 4 | feat: add checked shake256 backend | 완료 | c967798804a708465c91751415c5b0c5075205f1 | — | 완료 / workflow 도입 전 |
 | 5 | feat: implement constant-flow nibble substitution | 완료 | 439fb53ddfcc6e13e2f74904f2ca5bbb9dda49d9 | — | 완료 / workflow 도입 전 |
 | 6 | feat: implement alternating round functions | 완료 | 732d32db5d1000012f67231c7069944cbe55c647 | Release CTest 5/5; boundary/carry/reference equality | 완료 / workflow 도입 전 |
-| 7 | feat: implement cached base key context | 완료 | 현재 커밋 (Git 이력) | CTest test_key passes after correcting domain length; 7/7 including pending tweak test | 게시 후 원격 확인 |
-| 8 | feat: implement keyed tweak permutation | 대기 | — | — | — |
+| 7 | feat: implement cached base key context | 완료 | fe9561189c387b9789e8667db2d8d6f61130d0eb | CTest test_key passes after correcting domain length; 7/7 including pending tweak test | 완료 / workflow 도입 전 |
+| 8 | feat: implement keyed tweak permutation | 완료 | 현재 커밋 (Git 이력) | CTest 7/7; zero/sequential encoding KAT and inverse roundtrip | 게시 후 원격 확인 |
 | 9 | feat: implement independent python reference | 대기 | — | — | — |
 | 10 | feat: implement prepared tweak context | 대기 | — | — | — |
 | 11 | feat: implement full-round block encryption | 대기 | — | — | — |
